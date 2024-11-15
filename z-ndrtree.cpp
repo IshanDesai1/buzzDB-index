@@ -1,46 +1,4 @@
-#include <iostream>
-#include <vector>
-#include <limits>
-#include <cmath>
-#include <queue>
-#include <cassert>
-#include <random>
-#include <algorithm>
-#define POINT_COORDINATES 512
-
-// Define a point in N-dimensional space
-struct Point {
-    std::vector<float> coordinates;
-    std::string label;
-
-    Point() {}
-    Point(const std::vector<float>& coords) : coordinates(coords) {}
-
-    Point(const std::vector<float>& coords, const std::string& lbl) : coordinates(coords), label(lbl) {}
-
-    bool operator<(const Point& other) const {
-        return coordinates < other.coordinates;
-    }
-
-    bool operator==(const Point& other) const {
-        return coordinates == other.coordinates;
-    }
-};
-
-void printPoint(const Point& p) {
-    std::cout << p.label << " (";
-    size_t numCoordinates = p.coordinates.size();
-    for (size_t i = 0; i < std::min(numCoordinates, size_t(10)); ++i) {
-        std::cout << p.coordinates[i];
-        if (i < std::min(numCoordinates, size_t(10)) - 1) {
-            std::cout << ", ";
-        }
-    }
-    if (numCoordinates > 10) {
-        std::cout << ", ...";
-    }
-    std::cout << ")\n";
-}
+#include "point.h"
 
 // Define a rectangle in N-dimensional space
 struct Rectangle {
@@ -462,28 +420,7 @@ private:
 int main() {
     RTree tree;
 
-    std::mt19937 gen(42);  // Fixed seed for reproducibility
-    std::uniform_real_distribution<float> dis(0.0, 1.0);
-
-    // Generate clustered 100 128-dimensional feature vectors
-    std::vector<Point> points;
-    for (int cluster = 0; cluster < 10; ++cluster) {
-        std::vector<float> center(POINT_COORDINATES);
-        for (float &val : center) {
-            val = dis(gen) * 100;  // Center of the cluster
-        }
-
-        for (int i = 0; i < 10; ++i) {
-            std::vector<float> coordinates(POINT_COORDINATES);
-            for (int j = 0; j < POINT_COORDINATES; ++j) {
-                coordinates[j] = center[j] + dis(gen) * 10;  // Points around the center
-            }
-            points.emplace_back(
-                coordinates, 
-                "Point_" + std::to_string(cluster * 10 + i)
-            );
-        }
-    }
+    auto points = getRandomData();
 
     // Insert points into RTree
     for (const Point& point : points) {
