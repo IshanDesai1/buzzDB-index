@@ -3,11 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <limits>
-#include <cmath>
 #include <queue>
-#include <cassert>
-#include <random>
-#include <algorithm>
 
 
 #define POINT_COORDINATES 512

@@ -1,4 +1,4 @@
-#include "point.h"
+#include "common.h"
 std::vector<Point> getClusteredData(int num_clusters, int num_points) {
     std::mt19937 gen(42);  // Fixed seed for reproducibility
     std::uniform_real_distribution<float> dis(0.0, 1.0);
