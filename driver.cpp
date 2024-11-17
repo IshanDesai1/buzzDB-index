@@ -1,6 +1,6 @@
 #include "common.h"
 int main() {
-    FlatIndex index;
+    MultiHashLSHIndex index;
     auto points = getRandomData();
     auto start_time = std::chrono::system_clock::now();
 

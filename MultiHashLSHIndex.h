@@ -34,10 +34,7 @@ class MultiHashLSHIndex {
         }
     }
     void insert(const Point& queryPoint) {
-        std::string bucket = get_bucket(queryPoint);
-        index[bucket].emplace_back(queryPoint);
-        printPoint(queryPoint);
-        std::cout << "hashed to " << bucket << std::endl;
+        index[get_bucket(queryPoint)].emplace_back(queryPoint);
     }
     std::vector<Point> nearestNeighbor(const Point& queryPoint, unsigned long int k) {
         std::string bucket = get_bucket(queryPoint);
