@@ -1,4 +1,7 @@
-#include "common.h"
+#include <vector>
+#include <random>
+#include "point.h"
+
 std::vector<Point> getClusteredData(int num_clusters, int num_points) {
     std::mt19937 gen(42);  // Fixed seed for reproducibility
     std::uniform_real_distribution<float> dis(0.0, 1.0);
@@ -40,4 +43,12 @@ std::vector<Point> getRandomData(int num_points) {
         );
     }
     return points;
+}
+
+float getEuclideanDistance(Point v1, Point v2) {
+    float total = 0.0;
+    for (long unsigned int i = 0; i < v1.coordinates.size(); i++) {
+        total += std::pow(v1.coordinates[i] - v2.coordinates[i], 2);
+    }
+    return std::sqrt(total);
 }

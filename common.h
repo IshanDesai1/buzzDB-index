@@ -2,7 +2,7 @@
 #define COMMON_H
 #include "point.h"
 #include "nd-rtree.h"
+#include "flatIndex.h"
 #include <random>
 #include <cassert>
-
 #endif

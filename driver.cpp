@@ -1,7 +1,7 @@
 #include "common.h"
 int main() {
-    RTree tree;
-
+    // RTree tree;
+    flatIndex tree;
     auto points = getRandomData();
 
     // Insert points into RTree
