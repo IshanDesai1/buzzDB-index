@@ -8,6 +8,11 @@ class SingleHashLSHIndex {
     std::unordered_map<int, std::vector<Point>> index;
     std::vector<float> unit_vector = getRandomUnitVector();
     int gamma;
+    
+    int hash(const Point& queryPoint) {
+        return computeDotProduct(queryPoint.coordinates, unit_vector) / gamma;
+    }
+    
     public:
     SingleHashLSHIndex(int gamma = static_cast<int>(NUM_POINTS)) : gamma(gamma) {}
 
@@ -15,12 +20,13 @@ class SingleHashLSHIndex {
         int bucket = hash(queryPoint);
         index[bucket].emplace_back(queryPoint);
     }
-    int hash(const Point& queryPoint) {
-        return computeDotProduct(queryPoint.coordinates, unit_vector) / gamma;
-    }
+
     std::vector<Point> nearestNeighbor(const Point& queryPoint, unsigned long int k) {
         int bucket = hash(queryPoint);
         return getNearestNeighbors(queryPoint, index[bucket], k);
+    }
+    std::string get_name() {
+        return "SingleHashLSHIndex";
     }
 };
 

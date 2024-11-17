@@ -382,6 +382,9 @@ public:
     void print(){
         printTree(root);
     }
+    std::string get_name() {
+        return "rtee";
+    }
 
 private:
     // Helper function to recursively search for nearest neighbors

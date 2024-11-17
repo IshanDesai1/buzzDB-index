@@ -7,4 +7,5 @@
 #include "MultiHashLSHIndex.h"
 #include <random>
 #include <cassert>
+#include <chrono>
 #endif

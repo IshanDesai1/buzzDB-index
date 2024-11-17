@@ -8,19 +8,6 @@ class MultiHashLSHIndex {
     std::vector<std::vector<float>> unit_vectors;
     int gamma;
     int num_hashes;
-    public:
-    MultiHashLSHIndex(int gamma = static_cast<int>(NUM_POINTS), int num_hashes = 3) : gamma(gamma), num_hashes(num_hashes) {
-        for (int i = 0; i < num_hashes; i++) {
-            unit_vectors.emplace_back(getRandomUnitVector());
-        }
-    }
-
-    void insert(const Point& queryPoint) {
-        std::string bucket = get_bucket(queryPoint);
-        index[bucket].emplace_back(queryPoint);
-        printPoint(queryPoint);
-        std::cout << "hashed to " << bucket << std::endl;
-    }
     std::string get_bucket(const Point& queryPoint) {
         auto hashes = hash(queryPoint);
         auto bucket = concatenate(hashes);
@@ -40,9 +27,24 @@ class MultiHashLSHIndex {
         }
         return bucket;
     }
+    public:
+    MultiHashLSHIndex(int gamma = static_cast<int>(NUM_POINTS), int num_hashes = 3) : gamma(gamma), num_hashes(num_hashes) {
+        for (int i = 0; i < num_hashes; i++) {
+            unit_vectors.emplace_back(getRandomUnitVector());
+        }
+    }
+    void insert(const Point& queryPoint) {
+        std::string bucket = get_bucket(queryPoint);
+        index[bucket].emplace_back(queryPoint);
+        printPoint(queryPoint);
+        std::cout << "hashed to " << bucket << std::endl;
+    }
     std::vector<Point> nearestNeighbor(const Point& queryPoint, unsigned long int k) {
         std::string bucket = get_bucket(queryPoint);
         return getNearestNeighbors(queryPoint, index[bucket], k);
+    }
+    std::string get_name() {
+        return "MultiHashLSHIndex";
     }
 };
 
