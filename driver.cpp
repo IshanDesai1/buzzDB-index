@@ -1,12 +1,11 @@
 #include "common.h"
 int main() {
-    // RTree tree;
-    flatIndex tree;
+    RTree index;
     auto points = getRandomData();
 
-    // Insert points into RTree
+    // Insert points into index
     for (const Point& point : points) {
-        tree.insert(point);
+        index.insert(point);
     }
 
     const int pointID = 66;
@@ -14,7 +13,7 @@ int main() {
 
     // Find the nearest neighbors
     int k = 3;
-    std::vector<Point> nearestNeighbors = tree.nearestNeighbor(queryPoint, k);
+    std::vector<Point> nearestNeighbors = index.nearestNeighbor(queryPoint, k);
 
     std::cout << "The " << k << " nearest neighbors to (" << queryPoint.label << "):" << std::endl;
     printPoint(queryPoint);

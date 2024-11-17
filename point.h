@@ -42,7 +42,5 @@ inline void printPoint(const Point& p) {
     std::cout << ")\n";
 }
 
-std::vector<Point> getClusteredData(int num_clusters = 10, int num_points = 10);
-std::vector<Point> getRandomData(int num_points = 100);
 
 #endif
