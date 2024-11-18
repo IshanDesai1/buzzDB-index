@@ -14,7 +14,7 @@ class SingleHashLSHIndex {
     }
     
     public:
-    SingleHashLSHIndex(int gamma = static_cast<int>(NUM_POINTS)) : gamma(gamma) {}
+    SingleHashLSHIndex(int gamma = static_cast<int>(std::sqrt(NUM_POINTS))) : gamma(gamma) {}
 
     void insert(const Point& queryPoint) {
         int bucket = hash(queryPoint);

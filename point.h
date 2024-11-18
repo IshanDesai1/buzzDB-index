@@ -6,7 +6,7 @@
 #include <queue>
 
 
-#define POINT_COORDINATES 512
+#define POINT_COORDINATES 4096
 
 // Define a point in N-dimensional space
 struct Point {

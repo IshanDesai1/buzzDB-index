@@ -28,7 +28,7 @@ class MultiHashLSHIndex {
         return bucket;
     }
     public:
-    MultiHashLSHIndex(int gamma = static_cast<int>(NUM_POINTS), int num_hashes = 3) : gamma(gamma), num_hashes(num_hashes) {
+    MultiHashLSHIndex(int gamma = static_cast<int>(std::sqrt(NUM_POINTS)), int num_hashes = 5) : gamma(gamma), num_hashes(num_hashes) {
         for (int i = 0; i < num_hashes; i++) {
             unit_vectors.emplace_back(getRandomUnitVector());
         }

@@ -8,7 +8,7 @@
 #include "point.h"
 
 #define MAX_VALUE 100
-#define NUM_POINTS 100
+#define NUM_POINTS 100000
 #define VARIANCE 10
 
 std::vector<Point> getClusteredData(int num_clusters = static_cast<int>(std::sqrt(NUM_POINTS)), int num_points = static_cast<int>(std::sqrt(NUM_POINTS))) {
