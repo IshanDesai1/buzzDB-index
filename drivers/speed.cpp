@@ -1,4 +1,4 @@
-#include "common.h"
+#include "../common.h"
 int main() {
     FlatIndex index;
     auto points = getClusteredData();
@@ -9,7 +9,7 @@ int main() {
     }
     auto index_build_time = std::chrono::system_clock::now();
     std::mt19937 gen(42);
-    std::uniform_int_distribution<> dis(1,100000);
+    std::uniform_int_distribution<> dis(1,NUM_POINTS);
     const int pointID = dis(gen);
     Point queryPoint = points[pointID];
 
@@ -25,7 +25,7 @@ int main() {
     auto total_time = std::chrono::duration_cast<std::chrono::milliseconds>(query_completion_time - start_time);
     auto index_time = std::chrono::duration_cast<std::chrono::milliseconds>(index_build_time - start_time);
     auto query_time = std::chrono::duration_cast<std::chrono::milliseconds>(query_completion_time - index_build_time);
-    std::cout << "index: " << index.get_name() 
+    std::cout << "speed test for index: " << index.get_name() 
         << " data dimensionality: " << POINT_COORDINATES 
         << " num points: " << NUM_POINTS 
         << " total time: " << total_time.count() << " milliseconds"
